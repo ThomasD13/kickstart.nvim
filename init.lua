@@ -491,6 +491,7 @@ local servers = {
   },
 }
 
+
 -- Setup neovim lua configuration
 require('neodev').setup()
 
@@ -515,6 +516,17 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+-- Custom clangd configuration to handle R5f Code. 
+-- Must be exectued after mason_lspconfig
+require("lspconfig").clangd.setup {
+  cmd = {
+    "clangd",
+    "--query-driver=/home/thomas/projects/internalDependencies/packages/toolchains-0.0.6/source/ti-cgt-armllvm_1.3.0.LTS/bin/tiarmclang",
+    "--log=verbose",
+  }
+}
+
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
