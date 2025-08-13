@@ -7,9 +7,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Set the blinking cursor settings
-vim.o.guicursor = 'n-v:block,i:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250'
-
 -- Make sure, that when we exit nvim the previous cursor settings get restored
 vim.cmd [[
     augroup RestoreCursorShapeOnExit
@@ -17,6 +14,14 @@ vim.cmd [[
         autocmd VimLeave * set guicursor=a:block20
     augroup END
 ]]
+
+-- Set the blinking cursor settings
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.notify 'Setting guicursor via VimEnter'
+    vim.opt.guicursor = 'n-v:block,i:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250'
+  end,
+})
 
 -- Remap for dealing with word wrap in v mode
 vim.keymap.set('v', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
