@@ -3,6 +3,10 @@
 --
 -- See the kickstart.nvim README for more information
 
+-- Disabled netrw plugin, because we will use nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Set the blinking cursor settings
 vim.o.guicursor = 'n-v:block,i:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250'
 
